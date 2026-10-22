@@ -20,20 +20,6 @@ export const getExperiences = (): Experience[] => [
     company: "Build Fast with AI",
     roles: [
       {
-        role: "Software Development Intern",
-        period: "Aug 2023 to Jan 2024",
-        highlights: [
-          "Designed the database schema, relationships, and CRUD operations, and built a custom authentication system on Supabase.",
-        ],
-        tech: [
-          { name: "Supabase", icon: "supabase" },
-          { name: "PostgreSQL", icon: "postgresql" },
-          { name: "TypeScript", icon: "typescript" },
-          { name: "Next.js", icon: "nextdotjs" },
-          { name: "React", icon: "react" },
-        ],
-      },
-      {
         role: "Software Engineer 1, Generative AI",
         period: "Present",
         highlights: [
@@ -57,6 +43,20 @@ export const getExperiences = (): Experience[] => [
           { name: "React", icon: "react" },
           { name: "MySQL", icon: "mysql" },
           { name: "JavaScript", icon: "javascript" },
+        ],
+      },
+      {
+        role: "Software Development Intern",
+        period: "Aug 2023 to Jan 2024",
+        highlights: [
+          "Designed the database schema, relationships, and CRUD operations, and built a custom authentication system on Supabase.",
+        ],
+        tech: [
+          { name: "Supabase", icon: "supabase" },
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "Next.js", icon: "nextdotjs" },
+          { name: "React", icon: "react" },
         ],
       },
     ],

@@ -1,19 +1,18 @@
 import HeroSection from "@/components/hero";
+import AboutSection from "@/components/about";
+import SkillsSection from "@/components/skills";
 import ExperienceSection from "@/components/experience";
-import ViewContainer from "@/components/view-container";
-import ContactSection from "@/components/contact";
-import FreelancePreview from "@/components/freelance-preview";
-import BlogPreview from "@/components/blog-preview";
+import ProjectsSection from "@/components/projects";
 
 const Home = () => {
   return (
-    <>
+    <main>
       <HeroSection />
+      <AboutSection />
+      <SkillsSection />
       <ExperienceSection />
-      <BlogPreview />
-      <FreelancePreview />
-      {/* <ProjectSection />*/}
-    </>
+      <ProjectsSection />
+    </main>
   );
 };
 

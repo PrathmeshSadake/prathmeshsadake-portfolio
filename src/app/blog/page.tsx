@@ -2,9 +2,11 @@ import Callout from "@/components/callout";
 
 const EmailPlatformCaseStudy: React.FC = () => {
   return (
-    <div className='max-w-4xl'>
+    <div className='view-container py-16 max-md:py-10'>
+      <div className='mx-auto max-w-3xl'>
       <header className='mb-8'>
-        <h1 className='text-3xl font-bold mb-3'>
+        <p className='micro-label mb-3'>Case Study</p>
+        <h1 className='font-display text-4xl font-bold tracking-tight mb-3 max-md:text-3xl'>
           How I helped my org cut email costs by 87%
         </h1>
         <p className='text-sm font-normal text-zinc-500 mb-4'>
@@ -449,6 +451,7 @@ await db.emailLog.create({
           </p>
         </div>
       </section>
+      </div>
     </div>
   );
 };

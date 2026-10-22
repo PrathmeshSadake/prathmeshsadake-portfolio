@@ -4,18 +4,37 @@
 
 html,
 body {
-  @apply bg-zinc-100 mb-12;
-  font-family: "Outfit", sans-serif;
+  @apply bg-paper text-ink;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Very light, thin grid background */
+body {
+  background-image: linear-gradient(
+      to right,
+      rgba(48, 86, 211, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(48, 86, 211, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  @apply bg-accent text-white;
+}
+
+/* Single-column content width used everywhere */
 .view-container {
-  @apply box-border mx-auto;
-  @apply w-[900px] max-2xl:w-[800px] max-xl:w-[720px] max-lg:w-[640px] max-md:w-[560px] max-sm:w-[340px];
+  @apply box-border mx-auto w-full max-w-6xl px-6 max-sm:px-4;
 }
 
-.subscribe-to-newsletter-view-container > .view-container {
-  @apply box-border mx-auto;
-  @apply w-[900px] max-2xl:w-[900px] max-xl:w-[860px] max-lg:w-[640px] max-md:w-[540px] max-sm:w-[360px];
+/* Small uppercase micro-label */
+.micro-label {
+  @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400;
 }
 
 .mdx-content > h1,
@@ -39,32 +58,14 @@ body {
 }
 
 code {
-  @apply text-sm max-sm:text-xs bg-zinc-200 p-1 rounded cursor-default;
+  @apply text-sm max-sm:text-xs bg-zinc-100 p-1 rounded cursor-default;
 }
 
 pre {
-  @apply bg-zinc-200 p-4 rounded-md overflow-x-scroll my-4;
+  @apply bg-zinc-100 border border-zinc-200 rounded-lg p-4 overflow-x-auto my-4;
   scroll-padding-block: 4px;
 }
 
 pre > code {
   @apply bg-transparent text-zinc-900;
-}
-
-.component-display-wrapper {
-  @apply flex flex-row items-center justify-center border-2 border-dashed border-zinc-200 p-12 rounded-md;
-}
-
-.ios-time-slider-component > * {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-}
-
-.ios-time-slider-component > *::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
-
-iframe > .subscribe-btn {
-  background-color: rgb(249 115 22);
-  color: white;
 }

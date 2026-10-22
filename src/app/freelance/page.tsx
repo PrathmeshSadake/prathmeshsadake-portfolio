@@ -17,13 +17,14 @@ const FreelancePage = () => {
   const projects = getFreelanceProjects();
 
   return (
-    <main className='freelance-page'>
+    <main className='freelance-page mx-auto w-full max-w-4xl px-6 py-16 max-sm:px-4 max-md:py-10'>
       <Section>
-        <h1 className='text-2xl font-semibold text-zinc-900 mb-2'>
+        <p className='micro-label mb-3'>Client Work</p>
+        <h1 className='font-display text-4xl font-bold tracking-tight text-ink mb-3 max-md:text-3xl'>
           Freelance Projects
         </h1>
         <p className='text-sm font-normal text-zinc-500 leading-6 mb-8'>
-          A collection of end-to-end products I've built for clients — from
+          A collection of end-to-end products I've built for clients, from
           AI-powered platforms to marketing websites. Each project showcases my
           ability to deliver complete solutions from concept to deployment.
         </p>

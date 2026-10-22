@@ -1,134 +1,57 @@
-interface ExperienceItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  experienceTitle?: React.ReactNode | string;
-  experienceDescription?: string[];
-  experienceOrg?: {
-    name?: React.ReactNode | string;
-    link?: React.ReactNode | string;
-    websiteDisplayName?: React.ReactNode | string;
-  };
-  experienceStatus?:
-    | "current"
-    | {
-        startAt?: React.ReactNode | string;
-        endAt?: React.ReactNode | string;
-      };
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  highlights: string[];
 }
-export const getExperiences = function (): ExperienceItemProps[] {
-  return [
-    {
-      experienceTitle: "Software Engineer 1 (Generative AI Applications)",
-      experienceDescription: [
-        "Developing and deploying Generative AI applications leveraging OpenRouter API and LLMs including GPT, Claude, Mistral, LLaMA, and Gemini.",
-        "Building custom AI pipelines for text generation, summarization, code assistance, image generation, and chatbot interfaces.",
-        "Maintained backend services using PostgreSQL, Supabase, and Vector Databases for efficient data storage and retrieval.",
-        "Collaborating with cross-functional teams to design, develop, and deploy web applications using Next.js and TypeScript.",
-        "Mentoring junior developers and facilitating their growth and development within the team.",
-      ],
-      experienceOrg: {
-        name: "Build Fast with AI",
-        link: "https://buildfastwithai.com",
-        websiteDisplayName: "buildfastwithai.com",
-      },
-      experienceStatus: "current",
-    },
-    {
-      experienceTitle: "Software Development Intern",
-      experienceDescription: [
-        "Designed and managed the database schema, created tables, defined relationships between data, and implemented CRUD operations for the application's data.",
-        "Designed and developed a custom authentication system using Supabase, enhancing security and user management capabilities.",
-      ],
-      experienceOrg: {
-        name: "Build Fast with AI",
-      },
-      experienceStatus: {
-        startAt: "Aug 2023",
-        endAt: "Jan 2024",
-      },
-    },
-    {
-      experienceTitle: "Software Development Intern",
-      experienceDescription: [
-        "Implemented RESTful APIs for communication between the client and server.",
-        "Implemented user authentication and authorization systems using Firebase, including features like user registration, login, password reset, and role-based access control.",
-        "Participated in code reviews to maintain code quality and learn from more experienced developers on the team.",
-      ],
-      experienceOrg: {
-        name: "Bharat One Care",
-        // link: "https://bharatonecare.com",
-        // websiteDisplayName: "bharatonecare.com",
-      },
-      experienceStatus: {
-        startAt: "Oct 2023",
-        endAt: "Dec 2023",
-      },
-    },
-    {
-      experienceTitle: "Product Engineer",
-      experienceDescription: [
-        "Developed and maintained responsive web applications using React.js and Next.js, providing a smooth user experience.",
-        "Leveraged Git for version control, ensuring seamless collaboration within development teams.",
-        "Worked in an Agile development environment, participating in sprint planning, daily stand-ups, and reviewing application requirements and interface designs.",
-      ],
-      experienceOrg: {
-        name: "Ensemble Inc",
-        // link: "https://ensembleinc.com",
-        // websiteDisplayName: "ensembleinc.com",
-      },
-      experienceStatus: {
-        startAt: "Nov 2022",
-        endAt: "Oct 2023",
-      },
-    },
-    {
-      experienceTitle: "Project Intern",
-      experienceDescription: [
-        "Automated the detection of different sentiments from textual comments and feedback.",
-        "Developed a deep learning algorithm to detect different types of emotion contained in a collection of English sentences or a large paragraph.",
-      ],
-      experienceOrg: {
-        name: "TCS iON",
-        // link: "https://www.tcsion.com",
-        // websiteDisplayName: "tcsion.com",
-      },
-      experienceStatus: {
-        startAt: "Jun 2022",
-        endAt: "Jul 2022",
-      },
-    },
-    {
-      experienceTitle: "MERN Stack Developer",
-      experienceDescription: [
-        "Responsible for writing reusable, testable, and efficient code.",
-        "Worked with ReactJS, Node.js, Express.js, and Firebase authentication.",
-        "Translated UI/UX design wireframes into high-quality code that produced visual elements of the application.",
-      ],
-      experienceOrg: {
-        name: "Docsup Private Limited",
-        // link: "https://docsup.com",
-        // websiteDisplayName: "docsup.com",
-      },
-      experienceStatus: {
-        startAt: "Jan 2022",
-        endAt: "Feb 2022",
-      },
-    },
-    {
-      experienceTitle: "Web Software Developer",
-      experienceDescription: [
-        "Worked on the UI/UX design enhancing user journey and creative elements.",
-        "Assisted with writing content for the descriptive elements of the website.",
-        "Improved existing UI of Web Applications.",
-        "Implemented Form validation using Javascript and jQuery.",
-      ],
-      experienceOrg: {
-        name: "Arca Innovation",
-        // link: "https://arcainnovation.com",
-        // websiteDisplayName: "arcainnovation.com",
-      },
-      experienceStatus: {
-        startAt: "Mar 2021",
-        endAt: "Apr 2021",
-      },
-    },
-  ];
-};
+
+export const getExperiences = (): Experience[] => [
+  {
+    role: "Software Engineer 1, Generative AI",
+    company: "Build Fast with AI",
+    period: "Present",
+    highlights: [
+      "Built a production-grade document processing pipeline using Redis-backed queues and LLMs to extract and process data, cutting manual workload by 60%.",
+      "Reduced LLM costs by 60% through token optimization on a tech product for one of the largest solar providers in the US.",
+      "Designed and shipped an internal email platform on AWS SES, SQS, Next.js, and PostgreSQL in 4 weeks, cutting email costs by 87%.",
+      "Built GenAI apps and custom pipelines for text generation, summarization, code assistance, image generation, and chat, using GPT, Claude, Mistral, LLaMA, and Gemini through OpenRouter.",
+      "Worked with the deployment team to ship applications to production on Azure.",
+      "Maintain backend services on PostgreSQL, Supabase, and vector databases, and mentor junior developers.",
+    ],
+  },
+  {
+    role: "Software Development Intern",
+    company: "Build Fast with AI",
+    period: "Aug 2023 to Jan 2024",
+    highlights: [
+      "Designed the database schema, relationships, and CRUD operations, and built a custom authentication system on Supabase.",
+    ],
+  },
+  {
+    role: "Software Development Intern",
+    company: "Bharat One Care",
+    period: "Oct 2023 to Dec 2023",
+    highlights: [
+      "Built RESTful APIs and Firebase authentication with role-based access control, and took part in code reviews.",
+    ],
+  },
+  {
+    role: "Product Engineer",
+    company: "Ensemble Inc",
+    period: "Nov 2022 to Oct 2023",
+    highlights: [
+      "Built responsive web apps with React.js and Next.js in an Agile team.",
+    ],
+  },
+  {
+    role: "Project Intern",
+    company: "TCS iON",
+    period: "Jun 2022 to Jul 2022",
+    highlights: [
+      "Built a deep learning model to detect emotions in English text and automate sentiment analysis of feedback.",
+    ],
+  },
+];
+
+export const earlierRoles =
+  "Earlier roles: MERN Stack Developer at Docsup in 2022, and Web Software Developer at Arca Innovation in 2021.";

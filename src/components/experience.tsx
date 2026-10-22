@@ -1,117 +1,40 @@
-import { cn } from "@/lib/utils";
-import Section from "./section";
-import LinkText from "./link-text";
-import Callout from "./callout";
-import { getExperiences } from "@/lib/experiences";
-
-interface ExperienceItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  experienceTitle?: React.ReactNode | string;
-  experienceDescription?: string[];
-  experienceOrg?: {
-    name?: React.ReactNode | string;
-    link?: React.ReactNode | string;
-    websiteDisplayName?: React.ReactNode | string;
-  };
-  experienceStatus?:
-    | "current"
-    | {
-        startAt?: React.ReactNode | string;
-        endAt?: React.ReactNode | string;
-      };
-}
+import { getExperiences, earlierRoles } from "@/lib/experiences";
+import SectionHeading from "./section-heading";
 
 const ExperienceSection: React.FunctionComponent = () => {
-  return (
-    <Section
-      className='experience-section grid grid-cols-1 justify-start gap-4'
-      id='experience'
-    >
-      <h2 className='about-heading leading-snug font-medium text-base text-zinc-900'>
-        {"worked as."}
-      </h2>
-      <Section className='experience-item-list-wrapper mt-4 grid grid-cols-1 justify-start gap-8'>
-        {getExperiences()?.map(
-          (experience: ExperienceItemProps, experienceIndex: number) => (
-            <ExperienceItem {...experience} key={experienceIndex} />
-          )
-        )}
-      </Section>
-    </Section>
-  );
-};
+  const experiences = getExperiences();
 
-const ExperienceItem: React.FunctionComponent<ExperienceItemProps> = ({
-  experienceTitle,
-  experienceDescription,
-  experienceOrg,
-  experienceStatus,
-  className,
-  ...attr
-}) => {
   return (
-    <div
-      className={cn(
-        "experience-item border-l-2 pl-4 hover:border-orange-300 cursor-default transition-all",
-        className
-      )}
-      {...attr}
-    >
-      <div className='flex flex-row items-start justify-between max-md:flex-col max-md:justify-start max-md:gap-2 max-sm:w-[320px]'>
-        <span>
-          <h3 className='experience-title font-normal text-zinc-900 capitalize w-[46ch] max-md:w-[30ch]'>
-            {experienceTitle}
-          </h3>
-          <p className='experience-org-details-wrapper text-sm flex flex-row items-center justify-start gap-1.5'>
-            {/* {"at, "} */}
-            {typeof experienceOrg?.link === "string" ? (
-              <LinkText
-                className='font-normal text-sm'
-                href={experienceOrg?.link}
-                target={"_blank"}
-              >
-                {experienceOrg?.name} ({experienceOrg?.websiteDisplayName})
-              </LinkText>
-            ) : (
-              <span className='font-normal text-sm'>{experienceOrg?.name}</span>
-            )}
-          </p>
-        </span>
-        <p className='experience-status font-normal text-zinc-500 text-sm'>
-          {typeof experienceStatus === "string" &&
-            experienceStatus === "current" &&
-            experienceStatus}
-          {typeof experienceStatus === "object" && (
-            <span className='experience-status-duration-wrapper'>
-              {experienceStatus?.startAt + "-" + experienceStatus?.endAt}
-            </span>
-          )}
-        </p>
-      </div>
-      <ul className='experience-description-list-content-wrapper mt-4 flex flex-col items-start justify-start gap-2 pl-3'>
-        {experienceDescription?.map((descriptionItem, descriptionIndex) => (
-          <li
-            className='font-normal text-zinc-500 text-sm list-disc list-outside'
-            key={descriptionIndex}
+    <section id='experience' className='view-container py-12'>
+      <SectionHeading title='Experience' />
+      <div className='max-w-4xl'>
+        {experiences.map((exp) => (
+          <article
+            key={`${exp.role}-${exp.company}`}
+            className='border-b border-zinc-200 py-7 first:pt-0 last:border-b-0'
           >
-            {descriptionItem}
-          </li>
+            <div className='flex items-baseline justify-between gap-4 max-sm:flex-col max-sm:gap-1'>
+              <h3 className='font-display text-base font-bold'>
+                {exp.role}
+                <span className='font-semibold text-accent'>
+                  {" "}
+                  · {exp.company}
+                </span>
+              </h3>
+              <p className='micro-label shrink-0'>{exp.period}</p>
+            </div>
+            <ul className='mt-3 space-y-2'>
+              {exp.highlights.map((point, i) => (
+                <li key={i} className='text-sm leading-7 text-zinc-600'>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
         ))}
-        {experienceOrg?.name === "AsyncAPI Initiative" && (
-          <Callout>
-            Was a part of AsyncAPI&apos;s first ever Mentorship Program, held in
-            year 2022. Learn more{" "}
-            <LinkText
-              className='text-sm text-zinc-600'
-              href={
-                "https://github.com/asyncapi/community/discussions/376#discussioncomment-2890658"
-              }
-            >
-              here
-            </LinkText>
-          </Callout>
-        )}
-      </ul>
-    </div>
+        <p className='mt-2 text-sm text-zinc-400'>{earlierRoles}</p>
+      </div>
+    </section>
   );
 };
 

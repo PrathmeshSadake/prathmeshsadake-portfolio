@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import ContactSection from "@/components/contact";
-import ViewContainer from "@/components/view-container";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
-  title: "Prathmesh Sadake",
+  title: "Prathmesh Sadake | AI Engineer & SDE",
   description:
-    "Full Stack Software Engineer specializing in Generative AI applications. Building cutting-edge AI-powered web applications with Next.js, React, TypeScript, and modern cloud technologies.",
+    "AI Engineer and Software Development Engineer building production systems that ship. Generative AI products and scalable backends with Java, Spring Boot, Python, AWS, and Azure.",
 };
 
 export default function RootLayout({
@@ -24,17 +27,15 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={cn(
-          "min-h-screen antialiased scroll-smooth",
-          outfit.className,
+          "min-h-screen antialiased",
+          inter.variable,
+          spaceGrotesk.variable,
+          "font-sans"
         )}
       >
-        <div className='main-view-container'>
-          <ViewContainer className='grid grid-cols-1 items-start justify-start gap-12'>
-            <Navbar />
-            {children}
-            <ContactSection />
-          </ViewContainer>
-        </div>
+        <Navbar />
+        {children}
+        <ContactSection />
       </body>
     </html>
   );

@@ -6,6 +6,9 @@ export interface ExperienceTech {
 export interface ExperienceRole {
   role: string;
   period: string;
+  /** Full-time, Part-time, Freelance, Internship */
+  type: string;
+  location: string;
   highlights: string[];
   tech: ExperienceTech[];
 }
@@ -20,39 +23,41 @@ export const getExperiences = (): Experience[] => [
     company: "Build Fast with AI",
     roles: [
       {
-        role: "Software Engineer 1, Generative AI",
-        period: "Present",
+        role: "Lead Software Engineer (Founding Team)",
+        period: "Jan 2024 to present",
+        type: "Full-time",
+        location: "Remote",
         highlights: [
-          "Built a production-grade document processing pipeline using Redis-backed queues and LLMs to extract and process data, cutting manual workload by 60%.",
-          "Reduced LLM costs by 60% through token optimization on a tech product for one of the largest solar providers in the US.",
-          "Designed and shipped an internal email platform on AWS SES, SQS, Next.js, and PostgreSQL in 4 weeks, cutting email costs by 87%.",
-          "Built GenAI apps and custom pipelines for text generation, summarization, code assistance, image generation, and chat, using GPT, Claude, Mistral, LLaMA, and Gemini through OpenRouter.",
-          "Worked with the deployment team to ship applications to production on Azure.",
-          "Maintain backend services on PostgreSQL, Supabase, and vector databases, and mentor junior developers.",
+          "Lead the engineering of production Generative AI products built on Claude, Gemini and open models, from design through deployment.",
+          "Ship secure LLM systems and AI agents: guardrails against prompt injection and data leaks, an LLM gateway for routing, rate limits and cost control, eval suites with LLM-as-judge, and tracing so every run can be inspected.",
+          "Built a document processing pipeline on Redis-backed queues and LLMs that turns unstructured documents into structured data at scale.",
+          "Cut LLM costs for a large US solar provider's product through token optimization, caching and model routing.",
+          "Designed and shipped an internal email platform on AWS and PostgreSQL, replacing a paid provider.",
+          "Work with coding agents and deep-agent workflows (Claude Code, subagents, MCP) as the default way to build, with every change reviewed.",
+          "Own backend services on PostgreSQL, Redis and Pinecone, ship to production on Azure, and mentor junior developers.",
         ],
         tech: [
           { name: "OpenAI", icon: "openai" },
           { name: "Anthropic Claude", icon: "anthropic" },
+          { name: "Python", icon: "python" },
           { name: "AWS", icon: "amazonwebservices" },
           { name: "Redis", icon: "redis" },
           { name: "PostgreSQL", icon: "postgresql" },
-          { name: "Supabase", icon: "supabase" },
           { name: "Next.js", icon: "nextdotjs" },
           { name: "Node.js", icon: "nodedotjs" },
-          { name: "Python", icon: "python" },
-          { name: "React", icon: "react" },
-          { name: "MySQL", icon: "mysql" },
-          { name: "JavaScript", icon: "javascript" },
+          { name: "TypeScript", icon: "typescript" },
         ],
       },
       {
-        role: "Software Development Intern",
+        role: "Software Development Intern (Founding Team)",
         period: "Aug 2023 to Jan 2024",
+        type: "Internship",
+        location: "Remote",
         highlights: [
-          "Designed the database schema, relationships, and CRUD operations, and built a custom authentication system on Supabase.",
+          "Designed the database schema, relationships and CRUD operations for the first version of the platform.",
+          "Built a custom authentication system with sessions and role-based access.",
         ],
         tech: [
-          { name: "Supabase", icon: "supabase" },
           { name: "PostgreSQL", icon: "postgresql" },
           { name: "TypeScript", icon: "typescript" },
           { name: "Next.js", icon: "nextdotjs" },
@@ -62,19 +67,22 @@ export const getExperiences = (): Experience[] => [
     ],
   },
   {
-    company: "Bharat One Care",
+    company: "BharatOne Care",
     roles: [
       {
         role: "Software Development Intern",
         period: "Oct 2023 to Dec 2023",
+        type: "Part-time",
+        location: "Remote",
         highlights: [
-          "Built RESTful APIs and Firebase authentication with role-based access control, and took part in code reviews.",
+          "Implemented RESTful APIs for communication between the client and server.",
+          "Built user authentication and authorization: registration, login, password reset and role-based access control.",
+          "Took part in code reviews to keep code quality up and learn from more experienced developers on the team.",
         ],
         tech: [
-          { name: "Firebase", icon: "firebase" },
+          { name: "React", icon: "react" },
           { name: "Node.js", icon: "nodedotjs" },
           { name: "JavaScript", icon: "javascript" },
-          { name: "React", icon: "react" },
           { name: "MySQL", icon: "mysql" },
         ],
       },
@@ -86,8 +94,12 @@ export const getExperiences = (): Experience[] => [
       {
         role: "Product Engineer",
         period: "Nov 2022 to Oct 2023",
+        type: "Freelance",
+        location: "Remote",
         highlights: [
-          "Built responsive web apps with React.js and Next.js in an Agile team.",
+          "Developed and maintained responsive web applications with React.js and Next.js.",
+          "Used Git for version control and collaboration across the development team.",
+          "Worked in an Agile environment: sprint planning, daily stand-ups, and reviewing application requirements and interface designs.",
         ],
         tech: [
           { name: "React", icon: "react" },
@@ -105,8 +117,11 @@ export const getExperiences = (): Experience[] => [
       {
         role: "Project Intern",
         period: "Jun 2022 to Jul 2022",
+        type: "Internship",
+        location: "Mumbai, India",
         highlights: [
-          "Built a deep learning model to detect emotions in English text and automate sentiment analysis of feedback.",
+          "Automated the detection of sentiment in textual comments and feedback.",
+          "Developed a deep learning model to detect the emotions in English sentences and longer passages.",
         ],
         tech: [
           { name: "Python", icon: "python" },

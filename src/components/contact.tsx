@@ -1,55 +1,67 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { MOSAICS } from "@/lib/mosaic";
+import { site } from "@/lib/site";
+import CopyEmail from "./copy-email";
+import { PixelGrid, Rings } from "./decor";
 
-import { WaveDecor } from "./decor";
-
-const contactLinks = [
-  { label: "GitHub", href: "https://github.com/PrathmeshSadake" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/prathmeshsadake" },
-  { label: "X", href: "https://x.com/prathmeshsadake" },
-];
-
+// Blue closing band with the rings behind it, then the dark footer.
 const ContactSection: React.FunctionComponent = () => {
   return (
-    <footer id='contact' className='border-t border-zinc-200 bg-paper'>
-      <div className='view-container relative py-16'>
-        <WaveDecor className='pointer-events-none absolute right-6 top-16 w-72 max-lg:hidden' />
-        <h2 className='font-display text-4xl font-bold tracking-tight max-md:text-3xl'>
-          Let&apos;s build something.
-        </h2>
-        <p className='mt-4 max-w-md text-[15px] leading-7 text-zinc-600'>
-          I&apos;m open to AI Engineer and SDE roles. If you&apos;re hiring or
-          want to talk about a project, reach out.
-        </p>
-
-        <a
-          href='mailto:prathmeshsadake@gmail.com'
-          className='mt-7 inline-block rounded-lg bg-accent px-6 py-3 font-display text-sm font-semibold text-white transition-colors hover:bg-accent/90'
-        >
-          prathmeshsadake@gmail.com
-        </a>
-
-        <div className='mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-6'>
-          <div className='flex items-center gap-5'>
-            {contactLinks.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                target='_blank'
-                className='inline-flex items-center gap-1 font-display text-xs font-semibold uppercase tracking-wide text-zinc-500 transition-colors hover:text-accent'
-              >
-                {item.label}
-                <ArrowUpRight className='h-3 w-3' />
-              </Link>
-            ))}
+    <>
+      <section
+        id='contact'
+        className='relative scroll-mt-24 overflow-hidden bg-blue text-white'
+      >
+        <Rings className='pointer-events-none absolute right-[-180px] top-1/2 h-[760px] w-[760px] -translate-y-1/2 opacity-35' />
+        <div className='wrap section-y relative flex flex-col gap-7'>
+          <div className='mono'>Contact</div>
+          <h2 className='serif m-0 max-w-[14ch] text-[clamp(44px,6.4vw,96px)] leading-[0.96]'>
+            Let&apos;s build <em className='text-amber-light'>something.</em>
+          </h2>
+          <p className='m-0 max-w-[520px] text-[17px] leading-[1.6] text-blue-mist sm:text-[20px]'>
+            I&apos;m open to AI Engineer and SDE roles. If you&apos;re hiring or
+            want to talk about a project, reach out.
+          </p>
+          <div className='flex flex-wrap gap-3'>
+            <a href={`mailto:${site.email}`} className='btn btn-light'>
+              Email me <span aria-hidden='true'>↗</span>
+            </a>
           </div>
-          <p className='text-xs text-zinc-400'>
-            Mumbai, India · Open to relocating to Bangalore or Hyderabad · ©{" "}
-            {new Date().getFullYear()}
+          <div className='flex flex-wrap items-center gap-3 text-blue-mist'>
+            <span className='mono text-[11px]'>Or write to</span>
+            <CopyEmail email={site.email} />
+          </div>
+          <ul className='m-0 flex list-none flex-wrap gap-x-7 gap-y-2 border-t border-white/30 p-0 pt-6'>
+            {site.links.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='mono ul-grow text-[12px] text-white transition-colors hover:text-amber-light'
+                >
+                  {item.label} <span aria-hidden='true'>↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <PixelGrid cells={MOSAICS.band} cols={48} gap={3} className='px-[3px] pb-[3px]' />
+      </section>
+
+      <footer className='bg-night text-night-text'>
+        <div className='wrap flex flex-col gap-5 py-10 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-12'>
+          <div className='flex flex-col gap-1.5'>
+            <span className='serif text-[22px] leading-none text-raised'>
+              {site.name}
+            </span>
+            <span className='mono text-[11px]'>{site.role}</span>
+          </div>
+          <p className='m-0 font-mono text-[11px] uppercase leading-[1.8] tracking-[0.1em]'>
+            {site.location} · © {new Date().getFullYear()}
           </p>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

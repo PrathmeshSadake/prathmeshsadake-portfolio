@@ -2,70 +2,282 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  @apply bg-paper text-ink;
-  font-family: var(--font-sans), system-ui, sans-serif;
+/*
+ * Design tokens. Warm paper canvas, near-black ink, four flat accents
+ * (blue / amber / coral / green), Instrument Serif for display, Instrument
+ * Sans for copy and JetBrains Mono for eyebrows, chips and buttons.
+ */
+:root {
+  /* Surfaces */
+  --paper: #efede7;
+  --paper-raised: #f6f4ef;
+  --white: #ffffff;
+  --night: #0e0d0b;
+  --night-line: #2a2824;
+  --night-text: #a8a49b;
+  --night-body: #c9c5bc;
+
+  /* Ink + text */
+  --ink: #14120f;
+  --body: #4a463f;
+  --muted: #5e5a53;
+  --faint: #9a958b;
+  --dim: #8a8780;
+
+  /* Lines */
+  --line: #d6d2c9;
+  --line-strong: #cfcac0;
+  --chip-line: #e2ded5;
+
+  /* Blue (primary accent) */
+  --blue: #2d5be3;
+  --blue-deep: #1e3fa8;
+  --blue-label: #7f9cf0;
+  --blue-mist: #dce3f5;
+  --blue-soft: #e3e9fb;
+  --blue-wash: #f1f4fd;
+
+  /* Amber */
+  --amber: #e8ac3e;
+  --amber-deep: #b87a12;
+  --amber-text: #9a6a12;
+  --amber-light: #f6d27e;
+  --amber-ink: #3a3528;
+  --amber-line: #ebd6a6;
+  --amber-soft: #f8ecd0;
+
+  /* Coral */
+  --coral: #de5b37;
+  --coral-deep: #c64a28;
+  --coral-text: #b23e1e;
+  --coral-soft: #f9e3da;
+
+  /* Green */
+  --green: #2e8a5e;
+  --green-deep: #23704b;
+  --green-ink: #1e5e3e;
+  --green-soft: #d3ebdd;
+  --green-light: #6fcb9c;
+
+  /* Horizontal gutter shared by every section. */
+  --gutter: clamp(20px, 5vw, 72px);
+
+  color-scheme: light;
 }
 
-/* Very light, thin grid background */
-body {
-  background-image: linear-gradient(
-      to right,
-      rgba(48, 86, 211, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(48, 86, 211, 0.045) 1px, transparent 1px);
-  background-size: 40px 40px;
+@layer base {
+  html {
+    background: var(--paper);
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+  }
+
+  /* A hairline scrollbar: 4px thumb, no track. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--faint);
+  }
+
 }
 
-html {
-  scroll-behavior: smooth;
+@layer components {
+  /* Shared horizontal rhythm: 1280px column with a fluid gutter. */
+  .wrap {
+    @apply mx-auto w-full max-w-[1280px] px-[var(--gutter)];
+  }
+  /* Lines a full-bleed block's left edge up with the 1280px grid. */
+  .grid-left {
+    padding-left: max(var(--gutter), calc((100vw - 1280px) / 2 + var(--gutter)));
+  }
+  .section-y {
+    @apply py-[clamp(72px,9vw,120px)];
+  }
+  /* The blog and freelance pages keep their old class name. */
+  .view-container {
+    @apply wrap;
+  }
+
+  /* Type helpers */
+  .mono {
+    @apply font-mono text-[13px] uppercase tracking-[0.2em];
+  }
+  .serif {
+    @apply font-serif font-normal tracking-[-0.02em];
+  }
+  .serif em {
+    font-style: italic;
+  }
+  .section-title {
+    @apply serif m-0 text-[clamp(40px,5.2vw,80px)] leading-[0.98];
+    text-wrap: balance;
+  }
+  .lede {
+    @apply text-[17px] leading-[1.6] text-muted sm:text-[20px];
+  }
+  .micro-label {
+    @apply mono text-[11px] text-faint;
+  }
+
+  /* Buttons: square, mono, tracked. */
+  .btn {
+    @apply inline-flex min-h-[52px] cursor-pointer items-center justify-center gap-3 px-6 font-mono text-[13px] uppercase tracking-[0.18em] no-underline transition-colors duration-150 sm:min-h-14 sm:px-8 sm:text-[14px] sm:tracking-[0.24em];
+  }
+  .btn-dark {
+    @apply bg-ink text-raised hover:bg-blue hover:text-white;
+  }
+  .btn-light {
+    @apply bg-raised text-ink hover:bg-ink hover:text-raised;
+  }
+  .btn-outline {
+    @apply border border-ink text-ink hover:bg-ink hover:text-raised;
+  }
+  .btn-sm {
+    @apply min-h-11 px-4 text-[11px] tracking-[0.16em] sm:min-h-11 sm:px-5 sm:text-[12px] sm:tracking-[0.16em];
+  }
+
+  /* Small tool chip (icon + name). */
+  .chip {
+    @apply inline-flex items-center gap-2 whitespace-nowrap border border-line-chip bg-white px-2.5 py-1.5 text-[13px] font-medium text-ink;
+  }
+  .chip img {
+    @apply h-3.5 w-3.5;
+  }
+
+  /* Hairline cell grid: 1px of line colour between solid cells. */
+  .cell-grid {
+    @apply grid gap-px border border-line-strong bg-line-strong;
+  }
+
+  /* Underline that grows from nothing on hover. Logical properties, so it
+     follows vertical text as well. */
+  .ul-grow {
+    position: relative;
+    text-decoration: none;
+  }
+  .ul-grow::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-end: -3px;
+    block-size: 1px;
+    inline-size: 0;
+    background: currentColor;
+    transition: inline-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ul-grow:hover::after,
+  .ul-grow:focus-visible::after {
+    inline-size: 100%;
+  }
+
+  /* Text link with the underline sitting low, as on the paper pages. */
+  .link-ul {
+    @apply underline decoration-line-strong underline-offset-[6px] transition-colors hover:decoration-blue hover:text-blue;
+  }
+
+
+  /* Decode effect: letters arrive in pale blue and settle to ink. */
+  .ch {
+    transition:
+      color 0.5s ease,
+      opacity 0.5s ease;
+  }
+  .ch.pend {
+    color: var(--blue-label);
+  }
+
+  /* Horizontal marquee: two copies of the group, one width slid per loop. */
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 48s linear infinite;
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .marquee-track {
+      animation: none;
+    }
+    .marquee-track > [aria-hidden="true"] {
+      display: none;
+    }
+  }
+
+  /* Long-form pages (blog, freelance). */
+  .prose-ps pre {
+    @apply my-5 overflow-x-auto border border-line-strong bg-night p-5 font-mono text-[13px] leading-[1.6] text-night-body;
+  }
+  .prose-ps pre > code {
+    @apply bg-transparent p-0 text-night-body;
+  }
+  .prose-ps code {
+    @apply bg-raised px-1.5 py-0.5 font-mono text-[13px] text-ink;
+  }
+  .prose-ps table {
+    @apply w-full border-collapse text-[15px] text-body;
+  }
+  .prose-ps th {
+    @apply mono py-3 pr-4 text-left text-[11px] text-faint;
+  }
+  .prose-ps td {
+    @apply border-t border-line py-3 pr-4;
+  }
+  .prose-ps ul {
+    @apply my-4 list-disc space-y-2 pl-5;
+  }
+  .prose-ps li::marker {
+    color: var(--blue);
+  }
 }
 
-::selection {
-  @apply bg-accent text-white;
-}
-
-/* Single-column content width used everywhere */
-.view-container {
-  @apply box-border mx-auto w-full max-w-6xl px-6 max-sm:px-4;
-}
-
-/* Small uppercase micro-label */
-.micro-label {
-  @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400;
-}
-
-.mdx-content > h1,
-.mdx-content > * > h1 {
-  @apply text-2xl my-2 max-md:text-xl max-sm:text-lg;
-}
-
-.mdx-content > h2,
-.mdx-content > * > h2 {
-  @apply text-xl my-2 max-md:text-lg max-sm:text-base;
-}
-
-.mdx-content > h3,
-.mdx-content > * > h3 {
-  @apply text-lg my-2 max-md:text-base max-sm:text-sm;
-}
-
-.mdx-content > p,
-.mdx-content > * > p {
-  @apply text-zinc-500 my-4 leading-6 text-base max-md:text-sm;
-}
-
-code {
-  @apply text-sm max-sm:text-xs bg-zinc-100 p-1 rounded cursor-default;
-}
-
-pre {
-  @apply bg-zinc-100 border border-zinc-200 rounded-lg p-4 overflow-x-auto my-4;
-  scroll-padding-block: 4px;
-}
-
-pre > code {
-  @apply bg-transparent text-zinc-900;
+@media (max-width: 639px) {
+  .mono {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
 }

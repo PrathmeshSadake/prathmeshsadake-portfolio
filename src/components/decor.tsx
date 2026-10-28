@@ -1,110 +1,86 @@
-/* Decorative abstract SVGs. All are aria-hidden and purely visual. */
+import type { MosaicCell } from "@/lib/mosaic";
+import { cn } from "@/lib/utils";
 
-export const HeroDecor: React.FunctionComponent<{ className?: string }> = ({
+/* Small decorative pieces. All are aria-hidden and purely visual. */
+
+/** A flat square swatch, used as a bullet in eyebrows and lists. */
+export function Square({ color, size = 9 }: { color: string; size?: number }) {
+  return (
+    <span
+      aria-hidden='true'
+      className='inline-block shrink-0'
+      style={{ width: size, height: size, background: color }}
+    />
+  );
+}
+
+/** Seeded pixel mosaic, see lib/mosaic.ts. */
+export function PixelGrid({
+  cells,
+  cols,
+  gap,
   className,
-}) => (
-  <svg
-    aria-hidden
-    viewBox='0 0 420 420'
-    fill='none'
-    className={className}
-  >
-    {/* concentric orbits */}
-    <circle cx='250' cy='170' r='150' stroke='#3056d3' strokeOpacity='0.14' />
-    <circle cx='250' cy='170' r='110' stroke='#3056d3' strokeOpacity='0.2' />
-    <circle cx='250' cy='170' r='70' stroke='#3056d3' strokeOpacity='0.28' />
-    {/* diagonal flow lines */}
-    <path
-      d='M20 400 C 120 330, 180 330, 250 240'
-      stroke='#3056d3'
-      strokeOpacity='0.25'
-      strokeWidth='1.5'
-    />
-    <path
-      d='M60 416 C 160 350, 230 350, 300 250'
-      stroke='#3056d3'
-      strokeOpacity='0.16'
-      strokeWidth='1.5'
-    />
-    {/* planets */}
-    <circle cx='250' cy='170' r='10' fill='#3056d3' />
-    <circle cx='360' cy='170' r='5' fill='#3056d3' fillOpacity='0.55' />
-    <circle cx='180' cy='77' r='4' fill='#3056d3' fillOpacity='0.35' />
-    {/* dot matrix */}
-    {Array.from({ length: 5 }).map((_, row) =>
-      Array.from({ length: 5 }).map((_, col) => (
-        <circle
-          key={`${row}-${col}`}
-          cx={30 + col * 18}
-          cy={40 + row * 18}
-          r='1.6'
-          fill='#3056d3'
-          fillOpacity='0.3'
+}: {
+  cells: MosaicCell[];
+  cols: number;
+  gap: number;
+  className?: string;
+}) {
+  return (
+    <div
+      aria-hidden='true'
+      className={cn("grid", className)}
+      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap }}
+    >
+      {cells.map((cell, i) => (
+        <div
+          key={i}
+          className='aspect-square'
+          style={{ background: cell.bg, opacity: cell.o }}
         />
-      ))
-    )}
-  </svg>
-);
+      ))}
+    </div>
+  );
+}
 
-export const DotsDecor: React.FunctionComponent<{ className?: string }> = ({
-  className,
-}) => (
-  <svg aria-hidden viewBox='0 0 140 90' fill='none' className={className}>
-    {Array.from({ length: 5 }).map((_, row) =>
-      Array.from({ length: 8 }).map((_, col) => (
-        <circle
-          key={`${row}-${col}`}
-          cx={8 + col * 18}
-          cy={8 + row * 18}
-          r='1.6'
-          fill='#3056d3'
-          fillOpacity={0.35 - row * 0.05}
-        />
-      ))
-    )}
-  </svg>
-);
+/** Concentric rings behind the contact band. */
+export function Rings({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox='0 0 760 760' aria-hidden='true'>
+      <g fill='none' stroke='var(--white)' strokeWidth='1.2'>
+        <circle cx='380' cy='380' r='360' />
+        <circle cx='380' cy='380' r='240' />
+        <circle cx='300' cy='380' r='200' />
+        <circle cx='460' cy='380' r='200' />
+        <line x1='380' y1='20' x2='380' y2='740' />
+      </g>
+      <circle cx='380' cy='140' r='10' fill='var(--amber)' />
+      <circle cx='180' cy='520' r='8' fill='var(--white)' />
+    </svg>
+  );
+}
 
-export const ArcsDecor: React.FunctionComponent<{ className?: string }> = ({
-  className,
-}) => (
-  <svg aria-hidden viewBox='0 0 260 140' fill='none' className={className}>
-    <path
-      d='M0 140 A 130 130 0 0 1 260 140'
-      stroke='#3056d3'
-      strokeOpacity='0.15'
-      strokeWidth='1.5'
-    />
-    <path
-      d='M35 140 A 95 95 0 0 1 225 140'
-      stroke='#3056d3'
-      strokeOpacity='0.22'
-      strokeWidth='1.5'
-    />
-    <path
-      d='M70 140 A 60 60 0 0 1 190 140'
-      stroke='#3056d3'
-      strokeOpacity='0.3'
-      strokeWidth='1.5'
-    />
-    <circle cx='130' cy='80' r='6' fill='#3056d3' fillOpacity='0.75' />
-  </svg>
-);
-
-export const WaveDecor: React.FunctionComponent<{ className?: string }> = ({
-  className,
-}) => (
-  <svg aria-hidden viewBox='0 0 320 110' fill='none' className={className}>
-    {[0, 18, 36, 54].map((offset, i) => (
-      <path
-        key={offset}
-        d={`M0 ${30 + offset} C 60 ${10 + offset}, 100 ${50 + offset}, 160 ${
-          30 + offset
-        } C 220 ${10 + offset}, 260 ${50 + offset}, 320 ${30 + offset}`}
-        stroke='#3056d3'
-        strokeOpacity={0.3 - i * 0.06}
-        strokeWidth='1.5'
+/** Orbit diagram beside the hero copy: dashed ellipse, two rings, two planets. */
+export function Orbit({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox='0 0 400 400' aria-hidden='true'>
+      <ellipse
+        cx='200'
+        cy='200'
+        rx='180'
+        ry='180'
+        fill='none'
+        stroke='var(--line-strong)'
+        strokeWidth='1.2'
+        strokeDasharray='3 5'
       />
-    ))}
-  </svg>
-);
+      <circle cx='200' cy='200' r='100' fill='none' stroke='var(--line-strong)' strokeWidth='1.2' />
+      <circle cx='160' cy='200' r='88' fill='none' stroke='var(--line)' strokeWidth='1' />
+      <circle cx='240' cy='200' r='88' fill='none' stroke='var(--line)' strokeWidth='1' />
+      <line x1='200' y1='24' x2='200' y2='376' stroke='var(--line)' strokeWidth='1' />
+      <circle cx='200' cy='20' r='7' fill='var(--amber)' />
+      <circle cx='300' cy='200' r='7' fill='var(--blue)' />
+      <circle cx='112' cy='262' r='4' fill='var(--faint)' />
+    </svg>
+  );
+}

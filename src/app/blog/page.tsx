@@ -2,53 +2,53 @@ import Callout from "@/components/callout";
 
 const EmailPlatformCaseStudy: React.FC = () => {
   return (
-    <div className='view-container py-16 max-md:py-10'>
-      <div className='mx-auto max-w-3xl'>
+    <div className='wrap section-y'>
+      <div className='prose-ps max-w-[820px]'>
       <header className='mb-8'>
-        <p className='micro-label mb-3'>Case Study</p>
-        <h1 className='font-display text-4xl font-bold tracking-tight mb-3 max-md:text-3xl'>
+        <p className='mono mb-4 text-blue'>Case study</p>
+        <h1 className='serif text-[clamp(40px,5vw,64px)] leading-[1] mb-5'>
           How I helped my org cut email costs by 87%
         </h1>
-        <p className='text-sm font-normal text-zinc-500 mb-4'>
+        <p className='text-[16px] leading-[1.7] text-body mb-4'>
           Migrating from Resend to a custom-built email platform on AWS SES,
           Next.js, SQS, and PostgreSQL, designed and shipped with AI assistance.
         </p>
-        <div className='flex flex-wrap items-center gap-2 text-xs text-zinc-500'>
+        <div className='mono flex flex-wrap items-center gap-2 text-[11px] text-muted'>
           <span>Prathmesh</span>
-          <span className='text-zinc-300'>•</span>
+          <span className='text-line-strong'>•</span>
           <span>May 2026</span>
-          <span className='text-zinc-300'>•</span>
+          <span className='text-line-strong'>•</span>
           <span>8 min read</span>
-          <span className='text-zinc-300'>•</span>
+          <span className='text-line-strong'>•</span>
           <span>Engineering, Cost Optimization</span>
         </div>
       </header>
 
-      <section className='mb-10'>
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-3'>
-          <div className='rounded-lg border border-zinc-200 bg-white p-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+      <section className='mb-12'>
+        <div className='cell-grid sm:grid-cols-3'>
+          <div className='bg-raised p-5'>
+            <p className='mono text-[11px] text-faint'>
               Cost reduction
             </p>
-            <p className='mt-2 text-2xl font-semibold text-zinc-900'>87%</p>
+            <p className='mt-3 serif text-[40px] leading-none text-ink'>87%</p>
           </div>
-          <div className='rounded-lg border border-zinc-200 bg-white p-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='bg-raised p-5'>
+            <p className='mono text-[11px] text-faint'>
               Per 1,000 emails
             </p>
-            <p className='mt-2 text-2xl font-semibold text-zinc-900'>$0.10</p>
+            <p className='mt-3 serif text-[40px] leading-none text-ink'>$0.10</p>
           </div>
-          <div className='rounded-lg border border-zinc-200 bg-white p-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='bg-raised p-5'>
+            <p className='mono text-[11px] text-faint'>
               Build and ship
             </p>
-            <p className='mt-2 text-2xl font-semibold text-zinc-900'>4 wks</p>
+            <p className='mt-3 serif text-[40px] leading-none text-ink'>4 wks</p>
           </div>
         </div>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>The problem</h2>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>The problem</h2>
         <p className='mb-4'>
           Our organization was sending a mix of transactional and marketing
           emails through Resend. Password resets, welcome sequences, course
@@ -74,8 +74,8 @@ const EmailPlatformCaseStudy: React.FC = () => {
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>The old setup</h2>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>The old setup</h2>
         <p className='mb-4'>
           Before the migration, the email stack was simple: every part of the
           application called Resend&apos;s SDK directly, passing HTML or React
@@ -83,7 +83,7 @@ const EmailPlatformCaseStudy: React.FC = () => {
           worked fine at small scale. At higher volume, we started seeing the
           limitations.
         </p>
-        <ul className='list-disc pl-5 mb-4'>
+        <ul>
           <li>No control over send rate or queue depth during traffic spikes</li>
           <li>Bounce and complaint webhooks were handled inconsistently</li>
           <li>Zero visibility into delivery status across every send</li>
@@ -92,8 +92,8 @@ const EmailPlatformCaseStudy: React.FC = () => {
         </ul>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           The new architecture
         </h2>
         <p className='mb-4'>
@@ -102,32 +102,32 @@ const EmailPlatformCaseStudy: React.FC = () => {
           admin interface, and PostgreSQL (via Prisma) for state, tracking, and
           suppression management.
         </p>
-        <ul className='list-disc pl-5 mb-4'>
+        <ul>
           <li>
-            <span className='font-medium text-zinc-700'>AWS SES</span>: Delivery
+            <span className='font-semibold text-ink'>AWS SES</span>: Delivery
             engine. $0.10 per 1,000 emails. Handles DKIM, SPF, dedicated sending
             identity.
           </li>
           <li>
-            <span className='font-medium text-zinc-700'>AWS SQS</span>: Message
+            <span className='font-semibold text-ink'>AWS SQS</span>: Message
             queue with FIFO support. Decouples producers from the delivery
             worker, enables retry and rate control.
           </li>
           <li>
-            <span className='font-medium text-zinc-700'>Next.js API</span>:
+            <span className='font-semibold text-ink'>Next.js API</span>:
             Internal API for enqueue, template rendering, webhook ingestion, and
             an admin dashboard.
           </li>
           <li>
-            <span className='font-medium text-zinc-700'>PostgreSQL</span>: Tracks
+            <span className='font-semibold text-ink'>PostgreSQL</span>: Tracks
             send events, delivery status, bounces, complaints, and suppression
             lists via Prisma ORM.
           </li>
         </ul>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>How it flows</h2>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>How it flows</h2>
         <p className='mb-4'>
           Any service in our product (course platform, auth, notifications)
           calls a single internal API endpoint to send an email. That request is
@@ -140,7 +140,7 @@ const EmailPlatformCaseStudy: React.FC = () => {
           webhook endpoint, which updates our suppression list and delivery
           records in the database.
         </p>
-        <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2'>
+        <p className='mono text-[11px] text-faint mb-2'>
           Simplified send API (Next.js route)
         </p>
         <pre>
@@ -152,7 +152,7 @@ const EmailPlatformCaseStudy: React.FC = () => {
   "type": "transactional" // or "marketing"
 }`}</code>
         </pre>
-        <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2 mt-6'>
+        <p className='mono text-[11px] text-faint mb-2 mt-6'>
           Worker polls SQS, calls SES, records result
         </p>
         <pre>
@@ -177,8 +177,8 @@ await db.emailLog.create({
         </pre>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           Suppression and bounce handling
         </h2>
         <p className='mb-4'>
@@ -191,8 +191,8 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           Template management
         </h2>
         <p className='mb-4'>
@@ -205,8 +205,8 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           How AI accelerated the build
         </h2>
         <p className='mb-4'>
@@ -214,7 +214,7 @@ await db.emailLog.create({
           generation, but for system design reasoning, API schema design, edge
           case discovery, and writing the internal documentation.
         </p>
-        <ul className='list-disc pl-5 mb-4'>
+        <ul>
           <li>
             Generating the Prisma schema for email logs, suppression lists, and
             bounce events with proper indexing for delivery status queries
@@ -244,14 +244,14 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           The cost comparison
         </h2>
         <div className='overflow-x-auto mb-4'>
-          <table className='w-full border-collapse text-sm text-zinc-600'>
+          <table className='w-full border-collapse text-[15px] text-body'>
             <thead>
-              <tr className='text-left text-xs uppercase tracking-wider text-zinc-400'>
+              <tr>
                 <th className='py-2 pr-4'>Volume (emails/mo)</th>
                 <th className='py-2 pr-4'>Resend (before)</th>
                 <th className='py-2 pr-4'>SES platform (after)</th>
@@ -259,31 +259,31 @@ await db.emailLog.create({
               </tr>
             </thead>
             <tbody>
-              <tr className='border-t border-zinc-200'>
+              <tr className='border-t border-line'>
                 <td className='py-2 pr-4'>50,000</td>
                 <td className='py-2 pr-4'>$20.00</td>
                 <td className='py-2 pr-4'>$5.00</td>
                 <td className='py-2'>$15</td>
               </tr>
-              <tr className='border-t border-zinc-200'>
+              <tr className='border-t border-line'>
                 <td className='py-2 pr-4'>100,000</td>
                 <td className='py-2 pr-4'>$90.00</td>
                 <td className='py-2 pr-4'>$10.00</td>
                 <td className='py-2'>$80</td>
               </tr>
-              <tr className='border-t border-zinc-200'>
+              <tr className='border-t border-line'>
                 <td className='py-2 pr-4'>250,000</td>
                 <td className='py-2 pr-4'>$160.00</td>
                 <td className='py-2 pr-4'>$25.00</td>
                 <td className='py-2'>$135</td>
               </tr>
-              <tr className='border-t border-zinc-200'>
+              <tr className='border-t border-line'>
                 <td className='py-2 pr-4'>500,000</td>
                 <td className='py-2 pr-4'>~$400.00</td>
                 <td className='py-2 pr-4'>~$50.00</td>
                 <td className='py-2'>~$350</td>
               </tr>
-              <tr className='border-t border-zinc-200'>
+              <tr className='border-t border-line'>
                 <td className='py-2 pr-4'>1,000,000</td>
                 <td className='py-2 pr-4'>~$700.00</td>
                 <td className='py-2 pr-4'>~$100.00</td>
@@ -305,59 +305,59 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           What the migration involved
         </h2>
         <div className='grid grid-cols-1 gap-4'>
-          <div className='border-l-2 pl-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='border-l-2 border-blue pl-4'>
+            <p className='mono text-[11px] text-faint'>
               Week 1
             </p>
-            <p className='text-sm font-medium text-zinc-700'>
+            <p className='text-[15px] font-semibold text-ink'>
               System design and AWS setup
             </p>
-            <p className='text-sm text-zinc-500'>
+            <p className='text-[15px] leading-[1.6] text-muted'>
               Designed the architecture, set up SES domain verification, DKIM,
               and SPF records. Created SQS queues with dead-letter configuration.
               Drafted Prisma schema for email state tracking.
             </p>
           </div>
-          <div className='border-l-2 pl-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='border-l-2 border-blue pl-4'>
+            <p className='mono text-[11px] text-faint'>
               Week 2
             </p>
-            <p className='text-sm font-medium text-zinc-700'>
+            <p className='text-[15px] font-semibold text-ink'>
               Core API and worker build
             </p>
-            <p className='text-sm text-zinc-500'>
+            <p className='text-[15px] leading-[1.6] text-muted'>
               Built the internal Next.js API routes for send, status, and webhook
               ingestion. Implemented the SQS polling worker with retry logic.
               Wired SNS notifications to the suppression table.
             </p>
           </div>
-          <div className='border-l-2 pl-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='border-l-2 border-blue pl-4'>
+            <p className='mono text-[11px] text-faint'>
               Week 3
             </p>
-            <p className='text-sm font-medium text-zinc-700'>
+            <p className='text-[15px] font-semibold text-ink'>
               Template migration and admin UI
             </p>
-            <p className='text-sm text-zinc-500'>
+            <p className='text-[15px] leading-[1.6] text-muted'>
               Migrated all email templates from Resend/React Email format to our
               internal renderer. Built a lightweight admin dashboard to view
               send logs, delivery rates, bounces, and suppression list
               management.
             </p>
           </div>
-          <div className='border-l-2 pl-4'>
-            <p className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>
+          <div className='border-l-2 border-blue pl-4'>
+            <p className='mono text-[11px] text-faint'>
               Week 4
             </p>
-            <p className='text-sm font-medium text-zinc-700'>
+            <p className='text-[15px] font-semibold text-ink'>
               Staging tests and production cutover
             </p>
-            <p className='text-sm text-zinc-500'>
+            <p className='text-[15px] leading-[1.6] text-muted'>
               Ran parallel sending in staging, validated delivery rates and
               bounce handling. Cutover production traffic with a feature flag.
               Monitored for 48 hours before decommissioning Resend subscription.
@@ -366,11 +366,11 @@ await db.emailLog.create({
         </div>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           Tradeoffs worth knowing
         </h2>
-        <ul className='list-disc pl-5 mb-4'>
+        <ul>
           <li>
             You own deliverability. Reputation management, bounce rate
             monitoring, and suppression hygiene are your responsibility.
@@ -395,8 +395,8 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='mb-8 text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>
+      <section className='mb-8 text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>
           What I would do differently
         </h2>
         <p className='mb-4'>
@@ -413,8 +413,8 @@ await db.emailLog.create({
         </p>
       </section>
 
-      <section className='text-sm font-normal text-zinc-500'>
-        <h2 className='text-zinc-800 text-2xl font-medium mb-4'>Conclusion</h2>
+      <section className='text-[16px] leading-[1.7] text-body'>
+        <h2 className='serif text-[30px] leading-[1.1] text-ink mb-4'>Conclusion</h2>
         <p className='mb-4'>
           Moving from Resend to a custom AWS SES platform was one of the
           highest-leverage infrastructure projects I have shipped. The ongoing
@@ -430,7 +430,7 @@ await db.emailLog.create({
           infrastructure project going forward.
         </p>
         <Callout className='mt-6'>
-          <p className='font-medium text-zinc-800 mb-2'>TLDR</p>
+          <p className='font-semibold text-ink mb-2'>TLDR</p>
           <p>
             We replaced Resend with a custom platform using AWS SES, SQS,
             Next.js, and PostgreSQL. Monthly email costs dropped by over 87%.
@@ -441,9 +441,9 @@ await db.emailLog.create({
         </Callout>
       </section>
 
-      <section className='mt-10 text-sm font-normal text-zinc-500'>
-        <div className='border-l-2 pl-4'>
-          <p className='text-zinc-900 font-medium'>Prathmesh</p>
+      <section className='mt-10 text-[16px] leading-[1.7] text-body'>
+        <div className='border-l-2 border-blue pl-4'>
+          <p className='font-semibold text-ink'>Prathmesh</p>
           <p>Full-stack engineer, edtech and AI</p>
           <p className='mt-2'>
             Built with Next.js, AWS SES, SQS, Prisma, and PostgreSQL. System

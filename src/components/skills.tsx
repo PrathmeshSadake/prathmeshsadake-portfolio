@@ -1,63 +1,107 @@
+/* eslint-disable @next/next/no-img-element */
 import SectionHeading from "./section-heading";
 
-const skillGroups = [
+/* [label, icon file in /public/assets/icons] - a null icon is a plain chip */
+const SKILL_ROWS: { k: string; chips: [string, string | null][] }[] = [
   {
-    title: "AI / ML",
-    items:
-      "LLM applications with GPT, Claude, Gemini, Mistral, and LLaMA · RAG · Multi-agent systems · MCP · Claude Agent SDK · LangChain · Token optimization",
+    k: "AI engineering",
+    chips: [
+      ["Claude", "anthropic"],
+      ["OpenAI", "openai"],
+      ["Gemini", null],
+      ["Open models", null],
+      ["RAG", null],
+      ["Multi-agent systems", null],
+      ["MCP", null],
+      ["Claude Agent SDK", "anthropic"],
+      ["LangChain", null],
+    ],
   },
   {
-    title: "Backend",
-    items:
-      "Java · Spring Boot · Python · TypeScript · Microservices · Kafka · Redis · Node.js · Next.js",
+    k: "AI security & reliability",
+    chips: [
+      ["Guardrails", null],
+      ["LLM gateways", null],
+      ["Evals & LLM-as-judge", null],
+      ["Observability & tracing", null],
+      ["Prompt injection defence", null],
+      ["Claude Code", "anthropic"],
+      ["Deep agents", null],
+    ],
   },
   {
-    title: "Cloud & Data",
-    items:
-      "AWS · Azure · Docker · Kubernetes · PostgreSQL · Neo4j · Supabase · Vector databases",
+    k: "Backend",
+    chips: [
+      ["Java", null],
+      ["Spring Boot", "springboot"],
+      ["Python", "python"],
+      ["TypeScript", "typescript"],
+      ["Microservices", null],
+      ["Kafka", "apachekafka"],
+      ["Redis", "redis"],
+      ["Node.js", "nodedotjs"],
+      ["Next.js", "nextdotjs"],
+    ],
+  },
+  {
+    k: "Cloud & data",
+    chips: [
+      ["AWS", "amazonwebservices"],
+      ["Azure", null],
+      ["Docker", null],
+      ["Kubernetes", null],
+      ["PostgreSQL", "postgresql"],
+      ["Neo4j", null],
+      ["Pinecone", null],
+      ["Redis", "redis"],
+    ],
+  },
+  {
+    k: "Credentials",
+    chips: [
+      ["AWS Certified Solutions Architect", "amazonwebservices"],
+      ["Udacity: Agentic AI", null],
+      ["Udacity: AI Engineering with Claude", null],
+      ["Udacity: AWS Cloud DevOps", null],
+    ],
   },
 ];
 
-const credentials = [
-  {
-    title: "AWS Certified Solutions Architect",
-    detail: "Amazon Web Services",
-  },
-  {
-    title: "6 Udacity Nanodegrees",
-    detail: "Agentic AI, AI Engineering with Claude, AWS Cloud DevOps, and more",
-  },
-  {
-    title: "Spring Boot 0 to 100",
-    detail: "Coding Shuttle, 2025",
-  },
-];
-
+// Stack rows: a mono label column and a run of chips, divided by hairlines.
 const SkillsSection: React.FunctionComponent = () => {
   return (
-    <section id='skills' className='view-container py-12'>
-      <SectionHeading title='Skills' />
-      <div className='max-w-4xl'>
-        {skillGroups.map((group) => (
-          <div
-            key={group.title}
-            className='grid grid-cols-[10rem_1fr] gap-6 border-b border-zinc-200 py-5 first:pt-0 max-md:grid-cols-1 max-md:gap-1'
-          >
-            <p className='micro-label pt-1'>{group.title}</p>
-            <p className='text-[15px] leading-8 text-zinc-600'>{group.items}</p>
-          </div>
-        ))}
+    <section id='skills' className='scroll-mt-24 border-t border-line bg-raised'>
+      <div className='wrap section-y flex flex-col gap-10 sm:gap-14'>
+        <SectionHeading
+          eyebrow='04 / Skills'
+          title='The stack I'
+          accent='reach for.'
+        />
 
-        <div className='grid grid-cols-[10rem_1fr] gap-6 py-5 max-md:grid-cols-1 max-md:gap-1'>
-          <p className='micro-label pt-1'>Credentials</p>
-          <ul className='space-y-3'>
-            {credentials.map((cred) => (
-              <li key={cred.title} className='text-[15px] leading-7'>
-                <span className='font-medium text-ink'>{cred.title}</span>
-                <span className='text-zinc-400'> · {cred.detail}</span>
-              </li>
-            ))}
-          </ul>
+        <div className='border-t border-ink'>
+          {SKILL_ROWS.map((row) => (
+            <div
+              key={row.k}
+              className='grid grid-cols-1 gap-x-8 gap-y-3 border-b border-line py-5 md:grid-cols-[220px_minmax(0,1fr)] md:items-baseline'
+            >
+              <div className='mono text-[11px] text-muted'>{row.k}</div>
+              <div className='flex flex-wrap gap-2'>
+                {row.chips.map(([label, icon]) => (
+                  <span key={label} className='chip'>
+                    {icon && (
+                      <img
+                        src={`/assets/icons/${icon}.svg`}
+                        alt=''
+                        aria-hidden='true'
+                        decoding='async'
+                      />
+                    )}
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

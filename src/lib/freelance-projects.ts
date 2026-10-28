@@ -1,5 +1,11 @@
+import type { ProjectPreview } from "./projects";
+import type { Tone } from "./site";
+
 export interface FreelanceProject {
   title: string;
+  /** Illustrated window in the card's coloured frame. */
+  preview: ProjectPreview;
+  tone: Tone;
   shortDescription: string;
   fullDescription: string;
   techStack: string[];
@@ -15,6 +21,8 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
   return [
     {
       title: "Hirrings",
+      preview: "ranking",
+      tone: "blue",
       shortDescription: "AI-Powered Recruitment Platform",
       fullDescription:
         "Hirrings is an AI-driven hiring platform that helps companies match candidates to open roles and manage their hiring pipeline at scale. I built the platform end-to-end, from frontend UX to backend workflow automation and integrations.",
@@ -50,42 +58,9 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
       ],
     },
     {
-      title: "ZEP Resume",
-      shortDescription: "AI Job Application Copilot",
-      fullDescription:
-        "ZEP Resume is a suite of AI tools that helps job seekers create stronger applications, optimize resumes for ATS, and prepare for interviews. I was responsible for architecting and developing the platform from scratch.",
-      techStack: [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Supabase",
-        "OpenAI API",
-        "Stripe",
-      ],
-      link: "https://zepresume.com",
-      linkDisplay: "zepresume.com",
-      role: "Full-Stack Developer",
-      responsibilities: [
-        "Designed the overall system architecture for resume, cover letter, and interview tooling.",
-        "Implemented the web app UI, authentication, and subscription/paywall flows (Free, Pro, Business).",
-        "Integrated AI models to generate and score resumes, cover letters, and interview questions.",
-        "Built analytics and scoring pipelines to give users granular feedback on resume quality and interview readiness.",
-      ],
-      features: [
-        "AI cover letter generator that tailors letters to each job description and highlights relevant strengths.",
-        "Resume scorer and checker that evaluate ATS-readiness, structure, and content, returning actionable suggestions.",
-        "AI career coach that provides real-time, chat-based guidance across job search, positioning, and next steps.",
-        "AI mock interviews and interview-question generator with instant feedback on answers.",
-        "Resume and portfolio builders with templates, proofreading, skills extraction, and ATS checker tools.",
-      ],
-      impact: [
-        "Helped ZEP position itself as a 'one-stop' AI copilot for job applications, from resume to interview prep.",
-        "Improved user success and retention by surfacing clear scores, progress, and targeted recommendations.",
-      ],
-    },
-    {
       title: "FindU",
+      preview: "interview",
+      tone: "green",
       shortDescription: "AI Medical Interview Prep Platform",
       fullDescription:
         "FindU is an AI-powered platform that helps future healthcare professionals ace medical school and specialty interviews using realistic simulations and feedback. I led the end-to-end implementation of the product experience.",
@@ -120,6 +95,8 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
     },
     {
       title: "Talkerz",
+      preview: "score",
+      tone: "amber",
       shortDescription: "AI English Speaking & Reading Coach",
       fullDescription:
         "Talkerz is an AI-powered learning platform that combines reading comprehension with real-time speaking practice to improve English skills. I developed the full web experience and integrated the AI voice and analytics stack.",
@@ -130,7 +107,7 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
         "Node.js",
         "Speech APIs",
         "OpenAI API",
-        "Firebase",
+        "PostgreSQL",
       ],
       link: "https://www.talkerz.net",
       linkDisplay: "talkerz.net",
@@ -155,6 +132,8 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
     },
     {
       title: "Jag My Chef",
+      preview: "booking",
+      tone: "coral",
       shortDescription: "Online Culinary Service Platform",
       fullDescription:
         "Jag My Chef is a digital platform that connects users with culinary services (such as personal chefs, curated menus, or food experiences) through a modern web presence. I handled the full implementation of the marketing and booking experience.",
@@ -179,6 +158,8 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
     },
     {
       title: "BayGuard Fire Protection",
+      preview: "quote",
+      tone: "blue",
       shortDescription: "Safety Services Website",
       fullDescription:
         "BayGuard Fire Protection is a fire protection and safety services company that needed a professional web presence to build trust and generate leads. I developed the entire site from scratch, focusing on clarity, compliance, and conversions.",
@@ -199,39 +180,6 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
       impact: [
         "Provided BayGuard with a credible online presence in a trust-sensitive, regulated industry.",
         "Improved the company's ability to capture and qualify inbound leads through the website.",
-      ],
-    },
-    {
-      title: "Unrot",
-      shortDescription: "React Native Micro-Learning App (Gen-AI)",
-      fullDescription:
-        "Unrot is a mobile micro-learning app built with React Native that delivers short, AI-generated learning content and personalized practice sessions. I owned the full mobile engineering for the app.",
-      techStack: [
-        "React Native",
-        "TypeScript",
-        "Expo",
-        "Node.js",
-        "OpenAI API",
-        "Firebase",
-      ],
-      link: "",
-      linkDisplay: "Mobile App",
-      role: "Mobile Developer",
-      responsibilities: [
-        "Architected and built the React Native app for both iOS and Android from scratch.",
-        "Integrated Gen-AI APIs to generate bite-sized lessons, questions, and explanations on demand.",
-        "Implemented state management, navigation, and offline-friendly caching layers.",
-        "Set up analytics and event tracking for user engagement and retention.",
-      ],
-      features: [
-        "Micro-learning feed with short, focused lessons that users can complete in a few minutes.",
-        "AI-generated quizzes and explanations tailored to user level and previous performance.",
-        "Streaks, progress tracking, and reminder notifications to encourage daily learning.",
-        "Smooth, native-feeling UI and animations optimized for low-end and mid-range devices.",
-      ],
-      impact: [
-        "Turned abstract Gen-AI capabilities into a concrete, engaging learning experience on mobile.",
-        "Enabled the client to rapidly test and iterate on new learning formats with minimal engineering overhead.",
       ],
     },
   ];

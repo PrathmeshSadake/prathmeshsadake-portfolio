@@ -16,14 +16,14 @@ const LinkText: React.FunctionComponent<LinkTextProps> = ({
   return (
     <Link
       className={cn(
-        "flex flex-row items-center justify-start gap-0.5 text-base font-medium transition-all text-zinc-900 hover:text-zinc-700 hover:gap-1 active:text-orange-500",
+        "mono inline-flex items-center gap-1 text-[12px] text-ink transition-colors hover:text-blue",
         className
       )}
       {...attr}
       target={target}
     >
-      <span className='link-text-content-wrapper'>{attr?.children}</span>
-      <ArrowUpRight className='w-4' />
+      <span>{attr?.children}</span>
+      <ArrowUpRight className='h-3.5 w-3.5' />
     </Link>
   );
 };

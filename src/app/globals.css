@@ -281,3 +281,102 @@
     letter-spacing: 0.16em;
   }
 }
+
+/* Custom cursor. The class is added only for fine pointers that allow motion. */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+html.custom-cursor :is(input, textarea, select, [contenteditable="true"]),
+html.custom-cursor :is(input, textarea, select, [contenteditable="true"]) * {
+  cursor: text !important;
+}
+
+.cursor-root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.cursor-root.is-on {
+  opacity: 1;
+}
+.cursor-root.is-typing {
+  opacity: 0;
+}
+.cursor-follow {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.cursor-glow {
+  display: block;
+  width: 148px;
+  height: 148px;
+  margin: -74px 0 0 -74px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--blue) 32%, transparent) 0%,
+    transparent 68%
+  );
+  animation: cursor-pulse 2.6s ease-in-out infinite;
+}
+.cursor-ring {
+  position: relative;
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+.cursor-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 18%, transparent);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cursor-root.is-hot .cursor-ring {
+  transform: scale(2.15);
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  border-color: var(--blue);
+}
+.cursor-root.is-down .cursor-ring {
+  transform: scale(0.72);
+}
+.cursor-root.is-hot.is-down .cursor-ring {
+  transform: scale(1.65);
+}
+.cursor-root.is-hot .cursor-dot,
+.cursor-root.is-down .cursor-dot {
+  transform: scale(0.45);
+}
+
+@keyframes cursor-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.86);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    animation: none;
+  }
+}

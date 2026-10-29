@@ -4,7 +4,7 @@ import SectionHeading from "./section-heading";
 const FACTS = [
   { k: "Based in", v: site.location },
   { k: "Currently", v: "Lead Software Engineer, founding team at Build Fast with AI" },
-  { k: "Focus", v: "Secure LLM systems and AI agents in production" },
+  { k: "Focus", v: "Secure LLM systems and AI agents in production, deployed with Docker on AWS" },
   { k: "On the side", v: "Distributed systems in Java and Spring Boot" },
 ];
 
@@ -46,7 +46,8 @@ const AboutSection: React.FunctionComponent = () => {
               engineering on Generative AI products: LLM pipelines, AI agents
               and the backend systems around them. The agents we ship run
               behind guardrails, an LLM gateway, evals and tracing, so they
-              hold up once real users and real data arrive.
+              hold up once real users and real data arrive. I package those
+              services with Docker and deploy them on AWS.
             </p>
             <p>
               Before that I built products at startups as a product engineer

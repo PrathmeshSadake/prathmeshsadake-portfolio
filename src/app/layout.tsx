@@ -11,6 +11,7 @@ import { site } from "@/lib/site";
 import SideNav from "@/components/side-nav";
 import ContactSection from "@/components/contact";
 import ScrollProvider from "@/components/scroll-provider";
+import Cursor from "@/components/cursor";
 
 // Instrument Sans carries body copy, Instrument Serif the display headings
 // and italic accents, JetBrains Mono the eyebrows, chips and buttons.
@@ -73,6 +74,7 @@ export default function RootLayout({
           mono.variable
         )}
       >
+        <Cursor />
         <ScrollProvider>
           <SideNav />
           {children}

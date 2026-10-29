@@ -24,7 +24,7 @@ export const getExperiences = (): Experience[] => [
     roles: [
       {
         role: "Lead Software Engineer (Founding Team)",
-        period: "Jan 2024 to present",
+        period: "Feb 2024 to present",
         type: "Full-time",
         location: "Remote",
         highlights: [
@@ -34,13 +34,14 @@ export const getExperiences = (): Experience[] => [
           "Cut LLM costs for a large US solar provider's product through token optimization, caching and model routing.",
           "Designed and shipped an internal email platform on AWS and PostgreSQL, replacing a paid provider.",
           "Work with coding agents and deep-agent workflows (Claude Code, subagents, MCP) as the default way to build, with every change reviewed.",
-          "Own backend services on PostgreSQL, Redis and Pinecone, ship to production on Azure, and mentor junior developers.",
+          "Own backend services on PostgreSQL, Redis and Pinecone, deploy them with Docker on AWS and Azure, and mentor junior developers.",
         ],
         tech: [
           { name: "OpenAI", icon: "openai" },
           { name: "Anthropic Claude", icon: "anthropic" },
           { name: "Python", icon: "python" },
           { name: "AWS", icon: "amazonwebservices" },
+          { name: "Docker", icon: "docker" },
           { name: "Redis", icon: "redis" },
           { name: "PostgreSQL", icon: "postgresql" },
           { name: "Next.js", icon: "nextdotjs" },

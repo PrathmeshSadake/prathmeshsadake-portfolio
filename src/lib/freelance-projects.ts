@@ -164,8 +164,8 @@ export const getFreelanceProjects = function (): FreelanceProject[] {
       fullDescription:
         "BayGuard Fire Protection is a fire protection and safety services company that needed a professional web presence to build trust and generate leads. I developed the entire site from scratch, focusing on clarity, compliance, and conversions.",
       techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"],
-      link: "https://bayguardfire.com",
-      linkDisplay: "bayguardfire.com",
+      link: "https://bayguardfireprotection.com",
+      linkDisplay: "bayguardfireprotection.com",
       role: "Full-Stack Developer",
       responsibilities: [
         "Designed and implemented the frontend with a clear information hierarchy around services, certifications, and contact.",
